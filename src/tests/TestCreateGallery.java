@@ -93,5 +93,21 @@ public class TestCreateGallery {
         Assert.assertEquals(newGalleryTitle, "SNOW");
     }
 
+    @Test(priority = 3, testName = "Delete new gallery")
+    public void deleteNewCreatedGallery() {
+        driver.findElement(By.xpath("//button[contains(text(),'Delete Gallery')]")).click();
+        driver.switchTo().alert().accept();
 
+        WebElement allGalleriesBody = driver.findElement(By.xpath("//h1[contains(text(),'All Galleries')]"));
+        WebDriverWait wait = new WebDriverWait(driver, 5);
+        wait.until(ExpectedConditions.textToBePresentInElement(allGalleriesBody, "ALL GALLERIES"));
+
+        driver.findElement(By.xpath(Login.myGalleriesTabXpath)).click();
+        WebElement myGalleriesBody = driver.findElement(By.xpath("//h1[contains(text(),'My Galleries')]"));
+        WebDriverWait wait2 = new WebDriverWait(driver, 5);
+        wait2.until(ExpectedConditions.textToBePresentInElement(myGalleriesBody, "MY GALLERIES"));
+
+        String emptyGalleries = driver.findElement(By.xpath("//h4[contains(text(),'No galleries found')]")).getText().trim();
+        Assert.assertEquals(emptyGalleries, "No galleries found");
+    }
 }
