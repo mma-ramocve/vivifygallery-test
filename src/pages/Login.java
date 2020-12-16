@@ -16,5 +16,5 @@ public class Login {
     public static String newGalleryImagesUrlXPath = "//body/div[@id='app']/div[2]/div[1]/div[1]/form[1]/div[3]/div[1]/div[1]/input[1]";
     public static String newGallerySubmitButtonXPath = "//button[contains(text(),'Submit')]";
 
-
+    public static String logoutTabXPath = "//a[contains(text(),'Logout')]";
 }

@@ -110,4 +110,17 @@ public class TestCreateGallery {
         String emptyGalleries = driver.findElement(By.xpath("//h4[contains(text(),'No galleries found')]")).getText().trim();
         Assert.assertEquals(emptyGalleries, "No galleries found");
     }
+
+    @Test(priority = 4, testName = "Logout")
+    public void logout() {
+        driver.findElement(By.xpath(Login.logoutTabXPath)).click();
+
+        WebElement submitButton = driver.findElement(By.xpath("//button[contains(text(),'Submit')]"));
+        WebDriverWait wait = new WebDriverWait(driver, 5);
+        wait.until(ExpectedConditions.visibilityOf(submitButton));
+
+        String loginPageTitle = driver.findElement(By.xpath("//h1[contains(text(),'Please login')]")).getText().trim();
+        Assert.assertEquals(loginPageTitle, "PLEASE LOGIN");
+
+    }
 }
