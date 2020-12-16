@@ -8,4 +8,7 @@ public class Home {
     public static String registerUrl = "https://gallery-app.vivifyideas.com/register";
 
     public static String galleryAppTabXPath = "//a[contains(text(),'Gallery App')]";
+
+    public static String loginTabXPath = "//a[contains(text(),'Login')]";
+
 }
