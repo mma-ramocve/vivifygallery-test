@@ -1,7 +1,7 @@
 package pages;
 
 public class Home {
-    public static String homeUrl = "https://gallery-app.vivifyideas.com";
+    public static String homeUrl = "https://gallery-app.vivifyideas.com/";
     public static String driverPath = "chromedriver.exe";
 
     public static String registerTabXPath = "//a[contains(text(),'Register')]";

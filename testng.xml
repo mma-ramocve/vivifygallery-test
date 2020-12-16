@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite">
+    <test verbose="2" preserve-order="true"
+          name="C:/Users/Aleksandra/IdeaProjects/VivifyIdeasGalleryTest/src/tests/TestHome.java">
+        <classes>
+            <class name="tests.TestHome">
+                <methods>
+                    <include name="getRegisterPage"/>
+                    <include name="getHomePageFromRegister"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test verbose="2" preserve-order="true"
+          name="C:/Users/Aleksandra/IdeaProjects/VivifyIdeasGalleryTest/src/tests/TestLogIn.java">
+        <classes>
+            <class name="tests.TestLogIn">
+                <methods>
+                    <include name="getLoginPage"/>
+                    <include name="logInExistingUser"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test verbose="2" preserve-order="true"
+          name="C:/Users/Aleksandra/IdeaProjects/VivifyIdeasGalleryTest/src/tests/TestCreateGallery.java">
+        <classes>
+            <class name="tests.TestCreateGallery">
+                <methods>
+                    <include name="logInExistingUser"/>
+                    <include name="createGallery"/>
+                    <include name="openNewGallery"/>
+                    <include name="deleteNewCreatedGallery"/>
+                    <include name="logout"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>

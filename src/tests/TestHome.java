@@ -47,6 +47,6 @@ public class TestHome {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h1[contains(text(),'All Galleries')]")));
 
         String actualUrl = driver.getCurrentUrl();
-        Assert.assertEquals(actualUrl, Home.homeUrl + "/");
+        Assert.assertEquals(actualUrl, Home.homeUrl);
     }
 }
