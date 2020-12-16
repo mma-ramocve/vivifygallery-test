@@ -15,7 +15,7 @@ import pages.Login;
 
 import java.util.concurrent.TimeUnit;
 
-public class TestLogIn {
+public class TestCreateGallery {
     public WebDriver driver;
 
     @BeforeClass
@@ -32,17 +32,10 @@ public class TestLogIn {
         driver.quit();
     }
 
-
-    @Test(priority = 0, testName = "Test if click on Login tab takes to correct page")
-    public void getLoginPage() {
+    @Test(priority = 0, testName = "Test if click on Create Gallery as logged in user takes to correct page")
+    public void logInExistingUser() {
         driver.findElement(By.xpath(Home.loginTabXPath)).click();
 
-        String actualUrl = driver.getCurrentUrl();
-        Assert.assertEquals(actualUrl, Login.loginUrl);
-    }
-
-    @Test(priority = 1, testName = "Test login with valid credentials")
-    public void logInExistingUser() {
         WebElement email = driver.findElement(By.xpath(Login.loginEmailXPath));
         email.clear();
         email.sendKeys("mma.ramocve@gmail.com");
@@ -57,10 +50,34 @@ public class TestLogIn {
         WebDriverWait wait = new WebDriverWait(driver, 5);
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[contains(text(),'Logout')]")));
 
-        driver.findElement(By.xpath(Login.myGalleriesTabXpath)).click();
+        driver.findElement(By.xpath(Login.createGalleryTabXPath)).click();
 
-        String myGalleriesPageTitle = driver.findElement(By.xpath("//h1[contains(text(),'My Galleries')]")).getText().trim();
-        Assert.assertEquals(myGalleriesPageTitle, "MY GALLERIES");
-
+        String createGalleryPageTitle = driver.findElement(By.xpath("//h1[contains(text(),'Create Gallery')]")).getText().trim();
+        Assert.assertEquals(createGalleryPageTitle, "CREATE GALLERY");
     }
+
+    @Test(priority = 1, testName = "Test to create gallery as logged in user")
+    public void createGallery() throws InterruptedException {
+        WebElement title = driver.findElement(By.xpath(Login.newGalleryTitleXPath));
+        title.clear();
+        title.sendKeys("Snow");
+
+        WebElement descriptions = driver.findElement(By.xpath(Login.newGalleryDescriptionXPath));
+        descriptions.clear();
+        descriptions.sendKeys("Snow on trees");
+
+        WebElement image = driver.findElement(By.xpath(Login.newGalleryImagesUrlXPath));
+        image.clear();
+        image.sendKeys("https://cdn.pixabay.com/photo/2019/12/30/20/34/snow-4730553_1280.jpg");
+
+        driver.findElement(By.xpath(Login.newGallerySubmitButtonXPath)).click();
+
+        WebDriverWait wait = new WebDriverWait(driver, 5);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[contains(text(),'Snow')]")));
+
+        String newGalleryAuthor = driver.findElement(By.xpath("//a[contains(text(),'Aleksandra Kovacevic')]")).getText().trim();
+        Assert.assertEquals(newGalleryAuthor, "Aleksandra Kovacevic");
+    }
+
+
 }
