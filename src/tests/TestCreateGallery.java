@@ -57,7 +57,7 @@ public class TestCreateGallery {
     }
 
     @Test(priority = 1, testName = "Test to create gallery as logged in user")
-    public void createGallery() throws InterruptedException {
+    public void createGallery() {
         WebElement title = driver.findElement(By.xpath(Login.newGalleryTitleXPath));
         title.clear();
         title.sendKeys("Snow");
@@ -77,6 +77,20 @@ public class TestCreateGallery {
 
         String newGalleryAuthor = driver.findElement(By.xpath("//a[contains(text(),'Aleksandra Kovacevic')]")).getText().trim();
         Assert.assertEquals(newGalleryAuthor, "Aleksandra Kovacevic");
+    }
+
+    @Test(priority = 2, testName = "Test if new gallery is created")
+    public void openNewGallery() {
+        driver.findElement(By.xpath(Login.myGalleriesTabXpath)).click();
+        WebDriverWait wait = new WebDriverWait(driver, 5);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h1[contains(text(),'My Galleries')]")));
+
+        driver.findElement(By.xpath("//a[contains(text(),'Snow')]")).click();
+        WebDriverWait wait2 = new WebDriverWait(driver, 5);
+        wait2.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[contains(text(),'Edit Gallery')]")));
+
+        String newGalleryTitle = driver.findElement(By.xpath("//h1[contains(text(),'Snow')]")).getText().trim();
+        Assert.assertEquals(newGalleryTitle, "SNOW");
     }
 
 
